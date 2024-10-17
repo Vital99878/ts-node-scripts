@@ -13,6 +13,7 @@ function createReactComponent() {
 
   const templatePath = path.join(__dirname, '../text-templates/FC.tsx'); // замените 'source.txt' на ваш файл
 
+  checkDirectory(path.join(currentDirectory, `${component}`));
   // Укажите путь к директории, где будет создан новый файл
   const componentDirectoryPath = path.join(currentDirectory, `${component}`);
 
@@ -28,6 +29,7 @@ function createReactComponent() {
   // Создание папки, если она не существует
   if (!fs.existsSync(componentDirectoryPath)) {
     fs.mkdirSync(componentDirectoryPath, { recursive: true });
+    console.log(`Папка ${tsxFilePath} создана!`);
   }
 
   // Чтение содержимого из исходного файла
@@ -46,7 +48,7 @@ function createReactComponent() {
         return;
       }
 
-      console.log('Файл успешно создан и наполнен содержимым!');
+      console.log(`Файл ${tsxFilePath}.tsx создан`);
     });
   });
 
@@ -56,7 +58,7 @@ function createReactComponent() {
       return;
     }
 
-    console.log('Файл стилей успешно создан');
+    console.log(`Файл ${tsxFilePath}.module.scss успешно создан`);
   });
 
   fs.writeFile(
@@ -82,6 +84,17 @@ function createReactComponent() {
       console.log('Папка успешно components создана:', directoryPath);
     });
   }
+}
+
+function checkDirectory(path: string) {
+  fs.stat(path, (errMoException, stats) => {
+    if (!stats) return;
+    if (stats.isDirectory()) {
+      throw new Error('Папка существует');
+    } else {
+      console.log('Это не папка');
+    }
+  });
 }
 
 createReactComponent();
