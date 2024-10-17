@@ -1,7 +1,7 @@
 {
   "name": "ts-scripts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Скрипты nodejs для работы, написанные на TS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
