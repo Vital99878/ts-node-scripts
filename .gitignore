@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Директории с кэшами
+.cache/
+dist/
+build/
+tmp/
+temp/
+
+# Логи
+logs
+*.log
+
+# Операционные системы
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDEs и редакторы
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Прочие файлы
+
