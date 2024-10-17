@@ -1,13 +1,20 @@
+#!/usr/bin/env ts-node
 import * as fs from 'fs';
 import * as path from 'path';
 
 function createReactComponent() {
+  const currentDirectory = process.cwd();
   const [component, hasComponents] = process.argv.slice(2);
+
+  if (!component) {
+    console.log('Укажите название компонента!');
+    return;
+  }
 
   const templatePath = path.join(__dirname, '../text-templates/FC.tsx'); // замените 'source.txt' на ваш файл
 
   // Укажите путь к директории, где будет создан новый файл
-  const componentDirectoryPath = path.join(__dirname, `${component}`);
+  const componentDirectoryPath = path.join(currentDirectory, `${component}`);
 
   const emptyDirectories = ['utils', 'hooks', 'const', 'types'];
 

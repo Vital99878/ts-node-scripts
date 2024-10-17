@@ -1,11 +1,14 @@
 {
-  "name": "ts-scripts",
+  "name": "ts-node-scripts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write ."
+  },
+  "bin": {
+    "crfc": "./react/createReactComponent.ts"
   },
   "private": true,
   "dependencies": {
