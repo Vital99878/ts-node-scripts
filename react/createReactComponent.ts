@@ -52,7 +52,7 @@ function createReactComponent() {
     });
   });
 
-  fs.writeFile(scssFilePath, '.wrapper', (err) => {
+  fs.writeFile(scssFilePath, '.wrapper {}', (err) => {
     if (err) {
       console.error(`Ошибка записи в файл ${component}.module.scss:`, err);
       return;
