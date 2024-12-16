@@ -8,7 +8,8 @@
     "format": "prettier --write ."
   },
   "bin": {
-    "crfc": "./react/createReactComponent.ts"
+    "crfc": "./react/createReactComponent.ts",
+    "enex": "./english/createOmissionExercise.ts"
   },
   "private": true,
   "dependencies": {
