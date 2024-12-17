@@ -22,8 +22,17 @@ async function createOmissionExercise() {
     return console.error(e);
   }
 
-  console.log('exerciseRaw: ', exerciseRaw);
-  console.log('exerciseExecutedRaw: ', exerciseExecutedRaw);
+  let exercises = articleExerciseService.splitToArrayOfExercises(exerciseRaw);
+  let exercisesExecuted =
+    articleExerciseService.splitToArrayOfExercises(exerciseExecutedRaw);
+
+  console.log('exercise: ', exercises?.length);
+  console.log('exercisesExecuted: ', exercisesExecuted?.length);
+  // exercises?.length && exercises.forEach((e) => console.log('e: ', e));
+
+  // const exercisesForDb =
+  // console.log('exerciseRaw: ', exerciseRaw);
+  // console.log('exerciseExecutedRaw: ', exerciseExecutedRaw);
 }
 
 function createExercise(executed: string, executedExercise: string): string {

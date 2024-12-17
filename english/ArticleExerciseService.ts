@@ -5,7 +5,7 @@ class ArticleExerciseService {
   /**
    * Для извлечения текста, который находится между УПРАЖНЕНИЕ <number>
    */
-  private regEx = /УПРАЖНЕНИЕ\s+\d+([\s\S]*?)(?=УПРАЖНЕНИЕ\s+\d+|$)/g;
+  private regEx = /УПРАЖНЕНИЕ \d+\r?\n([\s\S]*?)(?=УПРАЖНЕНИЕ \d+|$)/g;
 
   getAllExercisesFromPseudoDB(path: string): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -17,9 +17,11 @@ class ArticleExerciseService {
   }
 
   // todo type Error. Not compiled by TS
-  // splitToArrayOfExercises(text: string): string[] {
-  //   return text.match(this.regEx);
-  // }
+  splitToArrayOfExercises(text: string): string[] {
+    // @ts-ignore
+    const matches = [...text.matchAll(this.regEx)];
+    return matches.map((match) => match[1]);
+  }
 
   createExercise(exercise: string, executedExercise: string): string {
     const placeholder = '…';
@@ -56,7 +58,6 @@ class ArticleExerciseService {
     // Указываем полный путь к файлу
     const filePath = path.join(__dirname, filename);
 
-    // Используем fs.writeFile для записи текста
     fs.writeFile(filePath, text, (err) => {
       if (err) {
         console.error('Ошибка при записи файла:', err);
