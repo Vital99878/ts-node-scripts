@@ -1,34 +1,29 @@
 #!/usr/bin/env ts-node
 import * as fs from 'fs';
 import * as path from 'path';
+import { articleExerciseService } from './ArticleExerciseService';
 
-function createOmissionExercise() {
+async function createOmissionExercise() {
   const currentDirectory = process.cwd();
   const [exPath, exExPath] = process.argv.slice(2);
 
-  let exercise = '';
-  let executedExercise = '';
+  let exerciseRaw = '';
+  let exerciseExecutedRaw = '';
 
-  fs.readFile(`${currentDirectory}/english/${exPath}`, 'utf8', (err, data) => {
-    if (err) {
-      return console.log('File does not exist');
-    } else {
-      exercise += data;
-    }
-  });
+  try {
+    exerciseRaw = await articleExerciseService.getAllExercisesFromPseudoDB(
+      'C:\\Users\\Office\\OneDrive\\Рабочий стол\\node-ts Scripts\\english\\db\\article-exercises.txt'
+    );
+    exerciseExecutedRaw =
+      await articleExerciseService.getAllExercisesFromPseudoDB(
+        'C:\\Users\\Office\\OneDrive\\Рабочий стол\\node-ts Scripts\\english\\db\\article-exercises-executed.txt'
+      );
+  } catch (e) {
+    return console.error(e);
+  }
 
-  fs.readFile(
-    `${currentDirectory}/english/${exExPath}`,
-    'utf8',
-    (err, data) => {
-      if (err) {
-        return console.log('File does not exist');
-      } else {
-        executedExercise += data;
-        createExercise(exercise, executedExercise);
-      }
-    }
-  );
+  console.log('exerciseRaw: ', exerciseRaw);
+  console.log('exerciseExecutedRaw: ', exerciseExecutedRaw);
 }
 
 function createExercise(executed: string, executedExercise: string): string {
